@@ -15,15 +15,31 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 84.8vh;
+  min-width: 10px;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin-right: 8px;
+  padding-left: 30px;
+  padding-right: 80px;
+  padding-top:  0px;
+  padding-bottom: 40px;
+}
+.App-header1 {
+  background-color: #282c34;
+  min-height: 10px;
+  min-width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding:10px;
+  padding-left: 30px;
+  padding-right: 80px;
+  padding-top:  40px;
+  padding-bottom: 40px;
 }
-
 .App-link {
   color: #61dafb;
 }
@@ -35,4 +51,47 @@
   to {
     transform: rotate(360deg);
   }
+}
+.Back{
+  width:100px;
+  height:60px;
+    background-color: #282c34;
+
+}
+.Column {
+border: 1px solid #73AD21;
+min-height: 84.8vh;
+  
+}
+.Column-big {
+border: 1px solid #73AD21;
+padding-left: 10px;
+background-color: white;
+  
+}
+.Button {
+  background-color:black;
+  height: 40px;
+  text-align: center;
+  font-size: 17px;
+  padding: 8px;
+
+}
+.Button-big {
+  background-color:black;
+  height: 60px;
+  text-align: center;
+  font-size: 17px;
+  padding: 12px;
+
+}
+.Flexbox{
+  height : 100px;
+ margin : 10px;
+ margin-left: 20px;
+ margin-right: 20px;
+ text-align: center;
+ padding-top: 20px ;
+ border: 1px solid #73AD21;
+background-color: white;
 }
