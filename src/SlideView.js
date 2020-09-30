@@ -13,7 +13,9 @@ export default function SlideView() {
       
        
         <Col span={18} style={styles.columnBig}>
-        <div>col-12</div>
+         <div>
+          col-12
+         </div>
         </Col>
      
         
