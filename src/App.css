@@ -87,11 +87,19 @@ background-color: white;
 }
 .Flexbox{
   height : 100px;
- margin : 10px;
- margin-left: 20px;
- margin-right: 20px;
+ margin : 15px;
+ margin-left: 30px;
+ margin-right: 30px;
  text-align: center;
- padding-top: 20px ;
  border: 1px solid #73AD21;
 background-color: white;
+color: black;
+}
+.Title{
+  font-weight:bold;
+  font-size: 25px;
+}
+.Data{
+font-size: 10px;
+  margin-top:-1px;
 }
