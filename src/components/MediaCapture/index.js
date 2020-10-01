@@ -73,7 +73,7 @@ const MediaCapture = (props) => {
               onClick={() => captureMedia.startRecording()}
               icon={<CameraOutlined />}
               style={styles.btnCapture}
-              disabled={isRecording}
+              disabled={isRecording || !isCapturing}
             >
               Start Recording
             </Button>
@@ -81,7 +81,7 @@ const MediaCapture = (props) => {
               onClick={() => captureMedia.stopRecording()}
               icon={<PauseCircleOutlined />}
               style={styles.btnCapture}
-              disabled={!isRecording}
+              disabled={!isRecording || !isCapturing}
             >
               Stop Recording
             </Button>
