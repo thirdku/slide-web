@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Row, Col, Button} from 'antd';
@@ -83,18 +84,28 @@ flexbox: {
  border: '1px solid #73AD21',
  backgroundColor: 'white',
  color: 'black',
+ position: 'relative'
 },
 title:{
   fontSize: '25px',
 },
 data:{
-fontSize: '10px',
-marginTop:'-13px',
+ fontSize: '10px',
+ marginTop:'-13px',
 },
-slides:{
+smallButton:{
+ position: 'absolute',
+ top: '0px',
+ right: '0px'
+},
+smallButton1:{
+    position:'absolute',
+    right: '23px'
 }
+
 }
 function App() {
+    
   return (
     <div style={styles.app}>
      <div >
@@ -113,7 +124,7 @@ function App() {
        </Col>
       </Row>
       <Row style={styles.appHeader} gutter={16,16} >
-        <Slides style={styles.slides}/>
+        <Slides />
         <SlideView/>
       </Row>
      </div>
