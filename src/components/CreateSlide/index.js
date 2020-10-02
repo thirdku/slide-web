@@ -88,7 +88,8 @@ const steps = [
 ];
 
 const CreateSlide = (props) => {
-  const videoElement = useRef(null);
+  const liveVideoElement = useRef(null);
+  const finishedVideoElement = useRef(null);
   
   const [current, setCurrent] = useState(0);
   const [mediaType, setMediaType] = useState('');  
@@ -98,7 +99,7 @@ const CreateSlide = (props) => {
     
   useEffect(() => {
     const captureMedia = new CaptureMedia({
-      videoElement,
+      liveVideoElement,
       setIsCapturing,
       setIsRecording,
     });
@@ -110,6 +111,20 @@ const CreateSlide = (props) => {
       captureMedia.startCapture();
     }
   }, [current]);
+  
+  const onDataFinish = (url) => {
+    console.log(finishedVideoElement);
+    finishedVideoElement.current.src = url;
+    finishedVideoElement.current.play();
+  }
+  
+  const _startRecording = () => {
+    captureMedia.startRecording(onDataFinish)
+  }
+  
+  const _stopRecording = () => {
+    captureMedia.stopRecording()
+  }
   
   if (captureMedia === null)
     return <div>Loading...</div>;
@@ -162,11 +177,12 @@ const CreateSlide = (props) => {
         current === 1
         ?
         <div style={styles.stepsContent}>
-          <video style={styles.video} ref={videoElement} autoPlay></video>
+          <video style={styles.video} ref={liveVideoElement} autoPlay></video>
           <RecordButton 
-            startRecord={() => captureMedia.startRecording()}
-            stopRecord={() => captureMedia.stopRecording()}
+            startRecording={_startRecording}
+            stopRecording={_stopRecording}
           />
+          <video style={styles.video} ref={finishedVideoElement} autoPlay controls></video>
         </div>
         :
         null

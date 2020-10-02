@@ -37,14 +37,14 @@ const RecordButton = (props) => {
     
     setTimerFunc(func);
     
-    props.startRecord();
+    props.startRecording();
   }
   
   const stopTimer = () => {
     setPlaying(false);
     clearInterval(timerFunc);
     
-    props.stopRecord();
+    props.stopRecording();
   }
   
   return (
@@ -64,5 +64,3 @@ const RecordButton = (props) => {
 }
 
 export default RecordButton;
-
-//clearInterval(refreshIntervalId);

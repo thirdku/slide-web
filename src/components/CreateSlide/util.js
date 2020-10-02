@@ -7,7 +7,7 @@ const displayMediaOptions = {
 
 class CaptureMedia {
   constructor(config) {
-    this.videoElement = config.videoElement;
+    this.videoElement = config.liveVideoElement;
     this.setIsCapturing = config.setIsCapturing;
     this.setIsRecording = config.setIsRecording;
     
@@ -39,20 +39,33 @@ class CaptureMedia {
         type: "video/webm",
       });
       const url = URL.createObjectURL(blob);
+      
+      /*
+      const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       document.body.appendChild(a);
       a.style = "display: none";
       a.href = url;
       a.download = "test.webm";
       a.click();
-      window.URL.revokeObjectURL(url);
+      window.URL.revokeObjectURL(url);*/
     }
   }
-  startRecording() {
+  startRecording(onFinishFunc) {
     this.mediaRecorder = new MediaRecorder(this.mediaStream, {
       mimeType: "video/webm; codecs=vp9",
     });
-    this.mediaRecorder.ondataavailable = this.dataAvail;
+    
+    this.mediaRecorder.ondataavailable = (event) => {
+      if (event.data.size > 0) {
+        const blob = new Blob([event.data], {
+          type: "video/webm",
+        });
+        const url = URL.createObjectURL(blob);
+        onFinishFunc(url);
+      }
+    }
+    
     this.mediaRecorder.start();
     this.setIsRecording(true);
   }
