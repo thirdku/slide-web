@@ -1,11 +1,8 @@
-import React from 'react';
-import { useState,useEffect } from 'react';
 import { Row, Col, Button} from 'antd';
 import 'antd/dist/antd.css';
 import Slides from './Slides.js';
 import SlideView from './SlideView.js';
 import { BellOutlined, UserOutlined } from '@ant-design/icons';
-import { DragDropContext } from "react-beautiful-dnd";
 
 
 export const styles = {
