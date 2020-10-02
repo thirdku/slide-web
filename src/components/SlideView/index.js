@@ -1,9 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Row, Col} from 'antd';
+import {  Col} from 'antd';
 import 'antd/dist/antd.css';
-import CreateSlide from './components/CreateSlide';
+import CreateSlide from '../CreateSlide/index.js';
 
 const styles = {
   columnBig: {
@@ -13,7 +11,7 @@ const styles = {
     padding: '40px',
     textAlign: 'left'
   }
-}
+};
 
 export default function SlideView() {
   return (

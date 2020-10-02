@@ -1,8 +1,9 @@
 import React from 'react';
 import { Row, Col, Button} from 'antd';
 import 'antd/dist/antd.css';
-import Slides from './Slides.js';
-import SlideView from './SlideView.js';
+import Slides from './components/Slides/index.js';
+
+import SlideView from './components/SlideView/index.js';
 import { BellOutlined, UserOutlined } from '@ant-design/icons';
 
 
@@ -65,17 +66,7 @@ export const styles = {
   fontSize: '17px',
   padding: '12px',
  },
- flexbox: {
-  height : '100px',
-  margin : '15px',
-  marginLeft: '30px',
-  marginRight: '30px',
-  textAlign: 'center',
-  border: '1px solid #73AD21',
-  backgroundColor: 'white',
-  color: 'black',
-  position: 'relative'
- },
+ 
  title:{
   fontSize: '25px',
  },
