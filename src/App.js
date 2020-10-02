@@ -1,3 +1,4 @@
+import React from 'react';
 import { Row, Col, Button} from 'antd';
 import 'antd/dist/antd.css';
 import Slides from './Slides.js';

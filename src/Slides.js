@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react';
 import { Droppable , DragDropContext, Draggable } from "react-beautiful-dnd";
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
