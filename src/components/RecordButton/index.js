@@ -3,17 +3,21 @@ import {
   Button
 } from 'antd';
 import {
-  PlaySquareOutlined,
-  PauseCircleOutlined
+  PlusCircleFilled,
+  PauseCircleFilled
 } from "@ant-design/icons";
 
 
 const styles = {
   playButton: {
     cursor: 'pointer',
-    fontSize: '40px',
+    fontSize: '30px',
     display: 'inline-block',
-    verticalAlign: 'middle'
+    verticalAlign: 'middle',
+    color: 'red',
+    border: '4px solid black',
+    borderRadius: '100%',
+    padding: '5px'
   },
   timerText: {
     fontSize: '20px',
@@ -22,6 +26,7 @@ const styles = {
     marginLeft: '10px'
   }
 };
+
 
 const RecordButton = (props) => {
   const [counter, setCounter] = useState(0);
@@ -52,9 +57,9 @@ const RecordButton = (props) => {
       {
         !playing
         ?
-          <PlaySquareOutlined onClick={startTimer} style={styles.playButton} />
+          <PlusCircleFilled onClick={startTimer} style={styles.playButton} />
         :
-          <PauseCircleOutlined onClick={stopTimer} style={styles.playButton} />
+          <PauseCircleFilled onClick={stopTimer} style={styles.playButton} />
       }
       <div style={styles.timerText}>
         0:0{counter}

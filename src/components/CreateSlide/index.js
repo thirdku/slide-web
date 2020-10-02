@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Steps, Button, message } from 'antd';
+import { Steps, Button, message, Spin } from 'antd';
 import CaptureMedia from "./util.js";
 import {
   PictureOutlined,
@@ -7,70 +7,9 @@ import {
   VideoCameraOutlined
 } from "@ant-design/icons";
 import RecordButton from "../RecordButton";
+import styles from './styles.js';
 
 const { Step } = Steps;
-
-const styles = {
-  bigButtonContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    alignContent: 'space-between',
-    color: 'black',
-    marginBottom: '50px',
-    marginTop: '50px'
-    
-  },
-  bigButton: {
-    width: '150px',
-    height: '95px',
-    backgroundColor: 'white',
-    color: 'rgb(144 131 131)',
-    textAlign: 'center',
-    paddingTop: '20px',
-    borderRadius: '10px',
-    letterSpacing: '1px',
-    fontSize: '14px',
-    border: '1px solid #c5c5c5',
-    cursor: 'pointer'
-  },
-  stepsContent: {
-    color: 'black',
-    textAlign: 'center'
-  },
-  paragraphMedia: {
-    fontSize: '12px',
-    width: '400px',
-    margin: '0 auto',
-    color: '#565656'
-  },
-  headerMedia: {
-    marginTop: '40px'
-  },
-  bigButtonIcon: {
-    fontSize:'30px'
-  },
-  activeBigButton: {
-    width: '150px',
-    height: '95px',
-    backgroundColor: '#1890ff',
-    color: 'white',
-    textAlign: 'center',
-    paddingTop: '20px',
-    borderRadius: '10px',
-    letterSpacing: '1px',
-    fontSize: '14px',
-    border: '1px solid #1890ff'
-  },
-  video: {
-    width: '100%',
-    padding: '50px',
-    backgroundColor: 'black',
-    marginTop: '30px'
-  }
-};
 
 const steps = [
   {
@@ -96,6 +35,7 @@ const CreateSlide = (props) => {
   const [isCapturing, setIsCapturing] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [captureMedia, setCaptureMedia] = useState(null);
+  const [recordLoading, setRecordLoading] = useState(false);
     
   useEffect(() => {
     const captureMedia = new CaptureMedia({
@@ -113,9 +53,17 @@ const CreateSlide = (props) => {
   }, [current]);
   
   const onDataFinish = (url) => {
-    console.log(finishedVideoElement);
-    finishedVideoElement.current.src = url;
-    finishedVideoElement.current.play();
+    setRecordLoading(true);
+    
+    setTimeout(function(){ 
+      setCurrent(2);
+      
+      setTimeout(function(){ 
+        finishedVideoElement.current.src = url;
+        finishedVideoElement.current.play();
+        setRecordLoading(false);
+      }, 100);
+    }, 2000);
   }
   
   const _startRecording = () => {
@@ -139,54 +87,57 @@ const CreateSlide = (props) => {
       </Steps>
       {
         current === 0
-        ?
-        <div style={styles.stepsContent}>
-          <h5 style={styles.headerMedia}> Select your media type </h5>
-          <p style={styles.paragraphMedia}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-          </p>
-          
-          <div style={styles.bigButtonContainer}>
-            <div 
-              onClick={ () => setMediaType('video') } 
-              style={ mediaType === 'video' ? styles.activeBigButton : styles.bigButton}
-            >
-              <VideoCameraOutlined style={styles.bigButtonIcon}/> <br/>
-              Video
-            </div>
-            <div 
-              onClick={ () => setMediaType('screenshot') } 
-              style={ mediaType === 'screenshot' ? styles.activeBigButton : styles.bigButton}
-            >
-              <FileImageOutlined style={styles.bigButtonIcon}/> <br/>
-              Screenshot
-            </div>
-            <div 
-              onClick={ () => setMediaType('imagefile') } 
-              style={ mediaType === 'imagefile' ? styles.activeBigButton : styles.bigButton}
-            >
-              <PictureOutlined style={styles.bigButtonIcon}/> <br/>
-              Image File
+        &&
+          <div style={styles.stepsContent}>
+            <h5 style={styles.headerMedia}> Select your media type </h5>
+            <p style={styles.paragraphMedia}>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            </p>
+            
+            <div style={styles.bigButtonContainer}>
+              <div 
+                onClick={ () => setMediaType('video') } 
+                style={ mediaType === 'video' ? styles.activeBigButton : styles.bigButton}
+              >
+                <VideoCameraOutlined style={styles.bigButtonIcon}/> <br/>
+                Video
+              </div>
+              <div 
+                onClick={ () => setMediaType('screenshot') } 
+                style={ mediaType === 'screenshot' ? styles.activeBigButton : styles.bigButton}
+              >
+                <FileImageOutlined style={styles.bigButtonIcon}/> <br/>
+                Screenshot
+              </div>
+              <div 
+                onClick={ () => setMediaType('imagefile') } 
+                style={ mediaType === 'imagefile' ? styles.activeBigButton : styles.bigButton}
+              >
+                <PictureOutlined style={styles.bigButtonIcon}/> <br/>
+                Image File
+              </div>
             </div>
           </div>
-        </div>
-        :
-        null
       }
       {
         current === 1
-        ?
-        <div style={styles.stepsContent}>
-          <video style={styles.video} ref={liveVideoElement} autoPlay></video>
-          <RecordButton 
-            startRecording={_startRecording}
-            stopRecording={_stopRecording}
-          />
-          <video style={styles.video} ref={finishedVideoElement} autoPlay controls></video>
-        </div>
-        :
-        null
+        &&
+          <div style={styles.stepsContent}>
+            <Spin spinning={recordLoading} size={'large'} style={{maxHeight: 'none'}}>
+              <video style={styles.video} ref={liveVideoElement} autoPlay></video>
+            </Spin>
+            <RecordButton 
+              startRecording={_startRecording}
+              stopRecording={_stopRecording}
+            />
+          </div>
       }
+      {
+        current === 2
+        &&
+          <video style={styles.video} ref={finishedVideoElement} autoPlay controls></video>
+      }
+      
       <div className="steps-action">
         <Button 
           style={{ margin: '0 8px' }} 
