@@ -5,7 +5,7 @@ import CreateSlide from '../CreateSlide/index.js';
 
 const styles = {
   columnBig: {
-    border: '1px solid #73AD21',
+    border: '1px solid black',
     paddingLeft: '10px',
     backgroundColor: 'white',
     padding: '40px',
@@ -15,7 +15,10 @@ const styles = {
 
 export default function SlideView() {
   return (
-    <Col span={18} style={styles.columnBig}>
+    <Col 
+     span={18} 
+     style={styles.columnBig}
+     >
      <CreateSlide />
     </Col>
 )}

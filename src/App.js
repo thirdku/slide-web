@@ -1,18 +1,20 @@
 import React from 'react';
-import { Row, Col, Button} from 'antd';
+import { Row, Col, Button, Layout} from 'antd';
+
 import 'antd/dist/antd.css';
 import Slides from './components/Slides/index.js';
-
+import NavBar from './components/NavBar/index.js'
 import SlideView from './components/SlideView/index.js';
 import { BellOutlined, UserOutlined } from '@ant-design/icons';
 
+const { Header, Content, Footer } = Layout;
 
 export const styles = {
  app:{
   textAlign:'center'
  },
  appHeader: {
-  backgroundColor: '#282c34',
+  backgroundColor: '#EEEEEE',
   minHeight: '84.8vh',
   minWidth: '100%',
   fontSize: 'calc(10px + 2vmin)',
@@ -24,7 +26,7 @@ export const styles = {
   paddingBottom: '40px',
  },
  appHeader1: {
-  backgroundColor: '#282c34',
+  backgroundColor: '#EEEEEE',
   minHeight: '10px',
   minWidth: '100%',
   display: 'flex',
@@ -39,11 +41,12 @@ export const styles = {
   marginRight: '-8px',
  },
  column: {
-  border: '1px solid #73AD21',
-  minHeight: '84.8vh',
+  border: '1px solid ',
+  minHeight: '842px',
+  backgroundColor: 'white'
  },
  columnBig: {
-  border: '1px solid #73AD21',
+  border: '1px solid black',
   paddingLeft: '10px',
   backgroundColor: 'white',
  },
@@ -81,31 +84,31 @@ export const styles = {
  },
  smallButton1:{
   position:'absolute',
-  right: '23px'
- }
+  left: '0px',
+  top: '0px'
+ },
+
  };
 
 function App() {
  
   return (
     <div style={styles.app}>
-     <div >
+     <Layout >
+      <NavBar  />
+      <Content>
       <Row 
        style={styles.appHeader1} 
        gutter={16} 
       >
        <Col span={6}>
-        <Button   block >Back</Button>
+        <Button  type="primary" block >Back</Button>
        </Col>
        <Col span={14}> 
        </Col>
        <Col span={2} >
-        <Button  icon={<BellOutlined />}>
-        </Button>
        </Col>
        <Col span={2} >
-        <Button icon={<UserOutlined />}> 
-        </Button>
        </Col>
       </Row>
       <Row 
@@ -115,7 +118,8 @@ function App() {
         <Slides   />
         <SlideView/>
       </Row>
-     </div>
+      </Content>
+     </Layout>
     </div>
   );
  }
