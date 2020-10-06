@@ -33,17 +33,16 @@ export const styles = {
   justifyContent: 'center',
   fontSize: 'calc(10px + 2vmin)',
   color: 'white',
-  padding: '10px',
   paddingLeft: '30px',
   paddingRight: '80px',
-  paddingTop:  '40px',
   paddingBottom: '40px',
   marginRight: '-8px',
  },
  column: {
   border: '1px solid ',
-  minHeight: '842px',
-  backgroundColor: 'white'
+  maxHeight: '842px',
+  backgroundColor: 'white',
+  overflowY: 'scroll',
  },
  columnBig: {
   border: '1px solid black',
@@ -79,13 +78,14 @@ export const styles = {
  },
  smallButton:{
   position: 'absolute',
-  top: '0px',
-  right: '0px'
+  top: '-10px',
+  right: '0px',
+  cursor: 'pointer'
  },
  smallButton1:{
   position:'absolute',
   left: '0px',
-  top: '0px'
+  top: '-5px',
  },
 
  };
@@ -101,15 +101,7 @@ function App() {
        style={styles.appHeader1} 
        gutter={16} 
       >
-       <Col span={6}>
-        <Button  type="primary" block >Back</Button>
-       </Col>
-       <Col span={14}> 
-       </Col>
-       <Col span={2} >
-       </Col>
-       <Col span={2} >
-       </Col>
+      
       </Row>
       <Row 
        style={styles.appHeader} 

@@ -16,18 +16,71 @@ const datas = [
 
 const divStyle ={
  slides:{
-  height : '200px',
+  height : '140px',
   width: '200x',
-  margin : '15px',
+  margin : '30px',
   marginLeft: '30px',
   marginRight: '30px',
   textAlign: 'center',
   color: 'black',
-  position: 'relative'
-} };
+  position: 'relative',
+  border: '2px solid grey',
+ },
+ slides1:{
+  height : '140px',
+  width: '200x',
+  margin : '30px',
+  marginLeft: '30px',
+  marginRight: '30px',
+  textAlign: 'center',
+  color: 'black',
+  position: 'relative',
+  border: '1px solid black',
+  backgroundImage: 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS0HJtAI_tiUPonNnuskIEcqQNRMs4LvMmS3g&usqp=CAU")',
+  backgroundPosition: 'center',
+  backgroundSize : 'cover'
+ },
+ col:{
+  border: '1px solid ',
+  maxHeight: '842px',
+  backgroundColor: 'white',
+  overflowY: 'maxresdefault'
+ }
+};
+const divSelected ={
+ slides:{
+  height : '140px',
+  width: '200x',
+  margin : '30px',
+  marginLeft: '30px',
+  marginRight: '30px',
+  textAlign: 'center',
+  color: 'black',
+  position: 'relative',
+  border: '5px solid orange',
+ },
+ slides1:{
+  height : '140px',
+  width: '200x',
+  margin : '30px',
+  marginLeft: '30px',
+  marginRight: '30px',
+  textAlign: 'center',
+  color: 'black',
+  position: 'relative',
+  border: '1px solid black',
+ },
+ col:{
+  border: '1px solid ',
+  maxHeight: '842px',
+  backgroundColor: 'white',
+  overflowY: 'maxresdefault'
+ }
+};
  
 export default function Slides() {
     const [data, setData] = useState(datas);
+    const [currentSlide, setSlide] = useState();
     const onDragEnd = result => {
       // return if item was dropped outside
       if (!result.destination) return;
@@ -57,9 +110,18 @@ export default function Slides() {
      item.splice(index,1);
      setData(item);
     };
+    const addSlide = () => {
+     const item = [...data]
+     item.push( {title:"",data:"",id:"id-("+ data.length +")",image:"https://www.comscidev.com/wp-content/uploads/2019/02/Scratch-Desktop30-4.jpg"})
+     setData(item);
+     console.log(data.length)
+    }
   return (
        <DragDropContext onDragEnd={onDragEnd}>
-        <Col span={6} >
+        <Col 
+         span={6}
+         style={styles.col}
+        >
         <Droppable droppableId={"droppable"}>
           {provided => (
          <div 
@@ -77,26 +139,19 @@ export default function Slides() {
               ref={provided.innerRef}
               {...provided.draggableProps}
                >
-              <div style={{...divStyle.slides,backgroundImage: 'url(' + item.image + ')'}}>
-               <Button
+              <div style={index===currentSlide ? {...divSelected.slides,backgroundImage: 'url(' + item.image + ')' } : {...divStyle.slides,backgroundImage: 'url(' + item.image + ')' }} onClick={()=>setSlide(index)}>
+               <div
                 {...provided.dragHandleProps}
                 style={styles.smallButton1} 
-                icon={<DragOutlined />} 
-                size="small" 
-                shape="circle"
-                type="default"
-
                 >
-               </Button>
-               <Button 
+                <DragOutlined />
+               </div>
+               <div 
                 style={styles.smallButton} 
-                icon={<MinusOutlined />} 
-                size="small" 
                 onClick={()=>onDelete(index)} 
-                shape="circle"
-                type="default"
                >
-               </Button>
+                <MinusOutlined />
+               </div>
               
               </div>
              </div>
@@ -105,9 +160,14 @@ export default function Slides() {
          )
         )}
           {provided.placeholder}
+          <div 
+           style={{...divStyle.slides1}}
+           onClick={()=>addSlide()}
+          />
          </div>
          )}
         </Droppable>
+        
         </Col>
        </DragDropContext>
         
