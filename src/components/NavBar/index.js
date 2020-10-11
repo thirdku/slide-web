@@ -1,8 +1,10 @@
 import React from 'react';
-import { Row, Col, Divider, Menu, Layout} from 'antd';
+import { Row, Col, Divider, Menu, Layout, Button} from 'antd';
 import 'antd/dist/antd.css';
 import { BellOutlined, UserOutlined, SwapLeftOutlined } from '@ant-design/icons';
 const { Header, Content, Footer } = Layout;
+const { SubMenu } = Menu;
+
 const styles = {
   navBar: {
     marginRight: '-8px',
@@ -52,12 +54,17 @@ export default function NavBar() {
     >
      <BellOutlined />
     </Menu.Item>
-    <Menu.Item 
+    <SubMenu 
      key="4"
      style={styles.divider1}
+     icon={<UserOutlined />}
      > 
-     <UserOutlined />
+    <Menu.Item key="setting:1">
+     <Button>
+      Log out
+     </Button>
     </Menu.Item>
+    </SubMenu>
    </Menu>
   </Header>
 )}

@@ -5,20 +5,19 @@ import CreateSlide from '../CreateSlide/index.js';
 
 const styles = {
   columnBig: {
-    border: '1px solid black',
-    paddingLeft: '10px',
+    border: '1px solid grey',
     backgroundColor: 'white',
-    padding: '40px',
-    textAlign: 'left'
+    textAlign: 'left',
+    height: '842px'
   }
 };
 
-export default function SlideView() {
+export default function SlideView({data, currentSlide, setSlide, setData, currentImage, setImage}) {
   return (
     <Col 
      span={18} 
      style={styles.columnBig}
      >
-     <CreateSlide />
+     <div style={{...styles.columnBig,backgroundImage: 'url(' + currentImage + ')' }}/>
     </Col>
 )}
