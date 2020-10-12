@@ -1,14 +1,19 @@
 import React from 'react';
 import {  Col} from 'antd';
 import 'antd/dist/antd.css';
-import CreateSlide from '../CreateSlide/index.js';
 
 const styles = {
   columnBig: {
-    border: '1px solid grey',
-    backgroundColor: 'white',
+    border: '0.5px solid grey',
     textAlign: 'left',
-    height: '842px'
+    backgroundSize: '100%, 100%',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    height: '77.9vh',
+    width: '100%',
+    paddingLeft: '-8px',
+    paddingRight: '-8px',
+
   }
 };
 

@@ -20,11 +20,13 @@ const datas = [
  ];
 export const styles = {
  app:{
-  textAlign:'center'
+  textAlign:'center',
+  overflowY: 'hidden',
+  overflowX: 'hidden'
  },
  appHeader: {
   backgroundColor: '#EEEEEE',
-  minHeight: '84.8vh',
+  height: '78vh',
   minWidth: '100%',
   fontSize: 'calc(10px + 2vmin)',
   color: 'white',
@@ -32,11 +34,13 @@ export const styles = {
   paddingLeft: '30px',
   paddingRight: '80px',
   paddingBottom: '40px',
-  marginTop : '-15px'
+  marginTop : '-15px',
+   overflowY: 'hidden',
+  overflowX: 'hidden'
  },
  appHeader1: {
   backgroundColor: '#EEEEEE',
-  minHeight: '10px',
+  height: '5vh',
   minWidth: '100%',
   display: 'flex',
   justifyContent: 'center',
@@ -46,17 +50,23 @@ export const styles = {
   paddingRight: '80px',
   paddingBottom: '40px',
   marginRight: '-8px',
+  overflowY: 'hidden',
+  overflowX: 'hidden'
  },
  column: {
   border: '1px solid grey',
-  height: '842px',
+  height: '78vh',
   backgroundColor: 'white',
   overflowY: 'scroll',
+  textAlign: 'center',
+  position: 'relative',
  },
  columnBig: {
   border: '1.5px solid grey',
   paddingLeft: '10px',
   backgroundColor: 'white',
+  height: '77.8vh',
+
  },
  button: {
   backgroundColor: 'black',
@@ -157,7 +167,7 @@ function App() {
       </Row>
       <Row 
        style={styles.appHeader} 
-       gutter={16,16} 
+       gutter={16} 
       >
        <DragDropContext onDragEnd={onDragEnd}>
         <Slides 

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Steps, Button, message, Spin } from 'antd';
+import { Steps, Button,  Spin } from 'antd';
 import CaptureMedia from "./util.js";
 import {
   PictureOutlined,
