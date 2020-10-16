@@ -1,18 +1,15 @@
 import React from 'react'
 import { Droppable , Draggable } from "react-beautiful-dnd";
 import { DragOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Col } from 'antd';
+import { Col, Button } from 'antd';
 import 'antd/dist/antd.css';
 import { styles } from '../../App.js';
+import './index.css';
 
 
 const divStyle ={
  slides:{
-  height : '110px',
-  width: '50%',
-  marginTop : '-10px',
-  marginLeft: '70px',
-  marginRight: '20px',
+  height : '200px',
   textAlign: 'center',
   color: 'black',
   position: 'relative',
@@ -30,10 +27,10 @@ const divStyle ={
   textAlign: 'center',
   color: 'black',
   position: 'relative',
-  border: '1px solid black',
   backgroundImage: 'url("https://www.freepnglogos.com/uploads/plus-icon/add-plus-icon-28.png")',
   backgroundPosition: 'center',
-  backgroundSize : 'cover'
+  backgroundSize : 'cover',
+  borderStyle: 'dotted',
  },
  col:{
   border: '1px solid ',
@@ -43,34 +40,28 @@ const divStyle ={
  },
  number:{
   textAlign: 'center',
-  fontSize: '20px',
+  fontSize: '10px',
  }
 };
 const divSelected ={
  slides:{
-   height : '110px',
-  width: '50%',
-  marginTop : '-10px',
-  marginLeft: '70px',
-  marginRight: '20px',
+  height : '200px',
   textAlign: 'center',
   color: 'black',
   position: 'relative',
   backgroundPosition: 'right',
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
-  border: '5px solid orange',
+  border: '5px solid #1890ff',
  },
  slides1:{
-  height : '140px',
-  width: '200x',
+  height : '200px',
   margin : '30px',
   marginLeft: '30px',
   marginRight: '30px',
   textAlign: 'center',
   color: 'black',
   position: 'relative',
-  border: '1px solid black',
  },
  col:{
   border: '1px solid ',
@@ -110,19 +101,18 @@ export default function Slides({onDragEnd, data, currentSlide, onDelete, addSlid
                >
               <h1 style={{...divStyle.number}}>{index + 1}</h1>
               <div style={item.id===currentSlide ? {...divSelected.slides,backgroundImage: 'url(' + item.image + ')' } : {...divStyle.slides,backgroundImage: 'url(' + item.image + ')' }} onClick={()=>{setSlide(item.id);setImage(item.image);}} >
-               <div
-                {...provided.dragHandleProps}
-                style={styles.smallButton1} 
-                >
-                <DragOutlined />
-               </div>
-               <div 
-                style={styles.smallButton} 
+               <Button 
+                {...provided.dragHandleProps}  
+                type={"dashed"}
+                icon={<DragOutlined />}
+                style={styles.smallButton1}
+               />
+               <Button 
+                type={"primary"}
                 onClick={()=>onDelete(index)} 
-               >
-                <DeleteOutlined />
-               </div>
-              
+                icon={<DeleteOutlined />} 
+                style={styles.smallButton}
+               />
               </div>
              </div>
              )}

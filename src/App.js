@@ -54,18 +54,19 @@ export const styles = {
   overflowX: 'hidden'
  },
  column: {
-  border: '1px solid grey',
   height: '78vh',
   backgroundColor: 'white',
   overflowY: 'scroll',
   textAlign: 'center',
   position: 'relative',
+  border : '5px solid #C5C5C5'
  },
  columnBig: {
-  border: '1.5px solid grey',
   paddingLeft: '10px',
   backgroundColor: 'white',
   height: '77.8vh',
+  border : '5px solid #C5C5C5'
+
 
  },
  button: {
@@ -100,14 +101,14 @@ export const styles = {
   top: '0px',
   right: '0px',
   cursor: 'pointer',
-  backgroundColor: 'white',
   height: '35px'
  },
  smallButton1:{
   position:'absolute',
   left: '0px',
   top: '0px',
-  backgroundColor: 'white'
+  backgroundColor: 'white',
+  height: '35px'
  },
  footer:{
   textAlign: 'right',
@@ -152,6 +153,7 @@ function App() {
      const item = [...data];
      item.push( {title:"",data:"",id:"id-("+ data.length +")",image:"https://www.comscidev.com/wp-content/uploads/2019/02/Scratch-Desktop30-4.jpg"});
      setData(item);
+     setImage(item.image);
      console.log(data.length);
     };
   return (

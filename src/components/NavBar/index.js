@@ -8,8 +8,10 @@ const { SubMenu } = Menu;
 const styles = {
   navBar: {
     marginRight: '-8px',
-    backgroundColor: 'white'
-
+    backgroundColor: 'white',
+    fontFamily: "'Francois One', sans-serif'",
+    fontWeight: 'bold',
+    fontSize: '100px'
   },
   button: {
     height:'50px',
@@ -48,21 +50,24 @@ export default function NavBar() {
      OVERVIEW
     </Menu.Item>
     <div style={styles.divider1}/>
-    <Menu.Item  
-     key="3"
-     style={styles.divider1}
-    >
-     <BellOutlined />
-    </Menu.Item>
     <SubMenu 
      key="4"
      style={styles.divider1}
      icon={<UserOutlined />}
+     title="User"
      > 
     <Menu.Item key="setting:1">
       Log out
     </Menu.Item>
     </SubMenu>
+    <Menu.Item  
+     key="3"
+     style={styles.divider1}
+     icon={<BellOutlined />}
+     mode="inline"
+    >
+    Notifications
+    </Menu.Item>
    </Menu>
   </Header>
 )}
